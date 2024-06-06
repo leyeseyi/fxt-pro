@@ -20,7 +20,7 @@
     "emailjs-com": "^3.2.0",
     "firebase": "^10.8.1",
     "postcss": "^8",
-    "swiper": "^11.0.6",
+    "swiper": "^11.0.7",
     "tailwindcss": "^3",
     "uid": "^2.0.2",
     "vue": "^3.2.13",
