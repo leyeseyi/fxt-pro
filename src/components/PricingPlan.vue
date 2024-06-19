@@ -33,11 +33,13 @@
               <p class="text-[30px]">Checkout page MAY not load while using your local network IP address. Kindly
                 activate your <a class="underline" href='https://protonvpn.com/'>VPN</a> to access
                 the checkout page.</p>
-              <base-button :title="'Continue'" :link= "plan.link" class="b-btn z-50"/>
+              <base-button :title="'Continue'" :link="plan.link" class="b-btn z-50" />
               <div></div>
-            <img src="../assets/icon/middle-gradient.png" alt="gradient" class="absolute bottom-0 top-0 z-20 opacity-[0.3]" />
+              <img src="../assets/icon/middle-gradient.png" alt="gradient"
+                class="absolute bottom-0 top-0 z-20 opacity-[0.3]" />
             </div>
-            <img src="../assets/icon/middle-gradient.png" alt="gradient" class="absolute bottom-10 z-20 opacity-[0.3]" />
+            <img src="../assets/icon/middle-gradient.png" alt="gradient"
+              class="absolute bottom-10 z-20 opacity-[0.3]" />
           </div>
         </div>
       </div>
@@ -81,7 +83,7 @@ export default {
           showPlanPop: false,
         },
         {
-          rating: 'MOST POPULAR',
+          rating: 'MORE POPULAR',
           plan: 'FXT Beginners Course',
           price: '$50',
           link: 'https://whop.com/checkout/plan_FtTRe1q9Pc7in?d2c=true',
@@ -156,7 +158,11 @@ export default {
     }
 
     .pricing-body {
-      @apply flex flex-col gap-14 justify-center items-center;
+      @apply flex flex-col gap-1 justify-center items-center;
+
+      @screen md {
+        @apply gap-14
+      }
 
       .para {
         @apply text-center text-base font-normal w-[90%] leading-[22px] mb-2;
@@ -171,7 +177,11 @@ export default {
       }
 
       .payment-method {
-        @apply flex items-center justify-end gap-2 w-[95%] font-[700] text-2xl;
+        @apply flex items-center justify-end gap-2 font-[700] text-2xl;
+
+        @screen md {
+          @apply w-[95%]
+        }
 
         .circle {
           @apply w-[18px] h-[18px] bg-[#E6E6E6] rounded-full relative flex justify-center items-center;
@@ -208,6 +218,7 @@ export default {
 
           .plan-pop {
             @apply p-8 flex flex-col items-center justify-between rounded-3xl bg-[#191919] text-white absolute bottom-0 left-0 right-0 top-0;
+
             .close-btn {
               @apply absolute top-2 right-2 text-black font-bold text-lg bg-[#AFAFAF] rounded-full w-8 h-8 flex items-center justify-center z-30;
             }
@@ -250,11 +261,15 @@ export default {
           }
 
           span {
-            @apply text-[20px] bg-[#8C0100] leading-[32.65px] absolute top-0 right-0 px-3 py-1 font-normal rounded-s-[14px] rounded-tr-3xl;
+            @apply text-[12px] bg-[#8C0100] leading-[32.65px] absolute top-0 right-0 px-3 font-normal rounded-s-[14px] ;
+
+            @screen sm {
+              @apply text-[20px] py-1 rounded-tr-3xl
+            }
           }
 
           .b-btn {
-            @apply w-full;
+            @apply w-full z-30;
           }
 
           .pros {

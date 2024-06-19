@@ -55,15 +55,15 @@ export default {
 
 <style lang="scss" scoped>
 .home {
-  @apply flex  flex-col justify-center items-center w-full bg-black relative;
+  @apply flex flex-col justify-center items-center w-full px-4 pb-4 bg-black relative;
   background-position: top center;
 
   @screen xll {
-      @apply h-screen gap-7
-    }
+    @apply h-screen gap-7 px-0
+  }
 
   .home-wrap {
-    @apply mt-1 pt-6 z-40 relative;
+    @apply mt-8 mx-2 pt-6 z-40 relative;
 
     @screen md {
       @apply mt-2 mx-6;
@@ -105,12 +105,12 @@ export default {
       }
 
       h2 {
-        @apply text-[19px] text-center font-bold transition-transform duration-500;
+        @apply text-[19px] font-bold transition-transform duration-500;
         word-wrap: break-word;
 
 
         @screen sm {
-          @apply text-[25px] text-center;
+          @apply text-[25px];
           letter-spacing: 1.32px;
           line-height: 57px;
         }
@@ -127,28 +127,28 @@ export default {
       }
 
       .about-us {
-      @apply flex flex-col gap-4 bg-black text-white;
+        @apply flex flex-col gap-4 bg-black text-white;
 
-      @screen md {
-        @apply flex-row gap-2 justify-center w-full pb-8;
+        @screen md {
+          @apply flex-row gap-2 justify-center w-full pb-8;
+        }
+
+        @screen lg {
+          @apply gap-12;
+        }
+
+
+
+
+        .cards {
+          @apply px-1 py-4;
+          z-index: 50;
+        }
+
       }
-
-      @screen lg {
-        @apply gap-12;
-      }
-
-
-
-
-      .cards {
-        @apply px-1 py-4;
-        z-index: 50;
-      }
-
-    }
 
       .btn1 {
-        @apply w-[395px] my-6 bg-black text-white border p-4 rounded-[15px] transition-colors duration-500 ease-in-out text-lg font-medium;
+        @apply my-6 bg-black text-white border p-4 rounded-[15px] transition-colors duration-500 ease-in-out text-lg font-medium;
 
         display: flex;
         justify-content: center;
@@ -207,7 +207,7 @@ export default {
       img {
         @apply object-cover transition;
 
-        
+
       }
     }
   }
@@ -216,13 +216,20 @@ export default {
     width: 300px;
     height: 1px;
     background: linear-gradient(to right, transparent 10%, gray 20%, gray 20%, gray 70%, transparent 90%);
+    @apply mb-3;
+
+    @screen md {
+      width:500px
+    }
+
     @screen lg {
+      @apply mb-0;
       width: 700px;
     }
   }
 
   .b-now {
-    @apply text-base font-normal text-white text-center py-8 leading-[22px] break-words tracking-wide w-full flex justify-center items-center overflow-hidden whitespace-nowrap;
+    @apply text-base font-normal text-white text-center py-3 leading-[22px] break-words tracking-wide w-full flex justify-center items-center overflow-hidden whitespace-nowrap;
     animation:
       typing 9s,
       cursor .4s step-end infinite alternate;
@@ -246,7 +253,7 @@ export default {
     }
 
     @screen sm {
-      @apply text-lg leading-8;
+      @apply text-lg leading-8 py-8;
     }
 
     @screen md {
@@ -269,6 +276,7 @@ export default {
 
   .gradient {
     display: none;
+
     @screen lg {
       @apply block absolute bottom-[-118px] right-0
     }

@@ -3,7 +3,7 @@
   <div class="partnership">
     <h2 class="partner"><span class="text-[#8C0100]">FXT</span> PARTNERSHIP PRGRAM</h2>
     <p>Did you know that you can earn up to 6% of our earning by just referring us to friends and family? We have
-      made it possible for both Non-Trader and Traders to be part of this grate community, Now you can earn from us!
+      made it possible for both Non-Trader and Traders to be part of this great community, Now you can earn from us!
     </p>
     <p>Join our Partnership program and earn after a successful referral to our paid Products (Signals/Beginners
       course /Advanced course). All earnings would be processed on <a href='https://Whop.com/' target='_blank'>WHOP</a>
