@@ -7,18 +7,14 @@
     >
 
       <!-- drop down -->
-      <div class="drop-down">
-        <router-link :to="faqLink"> 
+      <div class="drop-down"> 
           <fa-icon icon="sort-desc" 
           :class="{ 'transition duration-700 transform rotate-180': isActive, 'rotate-0': !isActive }"/>
-        </router-link>
       </div>
 
       <!-- faq title -->
-      <div class="title-wrap" >
-        <router-link :to="faqLink"> 
+      <div class="title-wrap" > 
           <h1>{{title}}</h1>
-        </router-link>
       </div>
     </div>
 
