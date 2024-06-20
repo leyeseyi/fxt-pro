@@ -31,7 +31,7 @@ export default {
 <style lang="scss" scoped>
 .review-card {
   @apply px-4 py-8 flex flex-col gap-y-6 bg-[#191919] justify-between rounded-2xl min-h-[200px] text-white;
-
+  transition: all 0.5s;
 
 
 
