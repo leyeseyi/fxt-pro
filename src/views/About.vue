@@ -103,11 +103,11 @@ export default {
       },
 
       ourFounder: {
-        paraOne: 'Meet Ken Jay, a 5 figure funded trader who is the founder of Forex terminators. Forex Terminators is a community which is focused on creating  brave and fearless traders who are capable of terminating the financial market',
+        paraOne: 'Meet Ken Jay, a 5 figure funded trader who is the founder of Forex terminators. Forex Terminators is a community which is focused on creating  brave and fearless traders who are capable of terminating the financial market.',
 
-        paraTwo: `His passion for forex trading began in the year 2020, where he was inspired by all hundreds of dollars made through copytrading`,
+        paraTwo: `His passion for forex trading began in the year 2020, where he was inspired by all hundreds of dollars made through copytrading.`,
 
-        paraThree: `He took a bold step of learning how to trade all by himself rather than copying peoples trade and paying for trading signals. He has achieved a whole lot of things during this passed years of his trading career. Such as developing a proven trading strategy with an 80% win rate which works well on all financial market `,
+        paraThree: `He took a bold step of learning how to trade all by himself rather than copying peoples trade and paying for trading signals. He has achieved a whole lot of things during this passed years of his trading career. Such as developing a proven trading strategy with an 80% win rate which works well on all financial market. `,
 
         srcPath: require('../assets/display/our-founder.webp'),
         loadingPath: require('../assets/display/load.webp'),
@@ -203,6 +203,7 @@ $fxt-red-2: #8C0100;
 
         .card {
           @apply px-6 py-10 space-y-3 rounded-xl;
+          transition: all 0.5s;
 
           &:hover {
             @apply translate-y-4 ease-in-out;

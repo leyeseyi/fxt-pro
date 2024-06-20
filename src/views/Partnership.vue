@@ -1,7 +1,7 @@
 <template>
   <!-- Partnership -->
   <div class="partnership">
-    <h2 class="partner"><span class="text-[#8C0100]">FXT</span> PARTNERSHIP PRGRAM</h2>
+    <h2 class="partner"><span class="text-[#8C0100]">FXT</span> PARTNERSHIP PROGRAM</h2>
     <p>Did you know that you can earn up to 6% of our earning by just referring us to friends and family? We have
       made it possible for both Non-Trader and Traders to be part of this great community, Now you can earn from us!
     </p>

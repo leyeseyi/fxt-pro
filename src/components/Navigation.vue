@@ -11,7 +11,7 @@
         <div class="nav-links">
           <ul v-show="!mobile">
 
-            <li @click.prevent="handleAnchorClick('home')">
+            <li @click.prevent="handleAnchorClick('about')">
               <a href="#about" class="link"> Who we are</a>
             </li>
             <li @click.prevent="handleAnchorClick('pricing')">
@@ -336,7 +336,7 @@ a {
 }
 
 .link {
-  @apply py-2 px-2 text-lg font-semibold tracking-wider;
+  @apply py-2 px-2 text-lg font-medium tracking-wider;
 
 
   @screen xl {

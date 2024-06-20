@@ -44,9 +44,9 @@ export default createStore({
 
         {
           id: uid(6),
-          title: 'Can I as a Non FXT Trader have access to FXT Terminators store?',
+          title: 'Can I as a Non FXT Trader have access to Forex Terminators store?',
           graphs: [
-            "Here at the FXT community we don't just sell our courses but we as well sell the branded merch. Ensuring no one is left behind in this movement!"
+            "YES! Here at FXT community we don't just give you access to our courses but we as well grant you access to our branded merch. Ensuring no one is left behind in this movement!"
           ]
         }
       ]

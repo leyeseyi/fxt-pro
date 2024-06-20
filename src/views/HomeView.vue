@@ -105,7 +105,7 @@ export default {
       }
 
       h2 {
-        @apply text-[19px] font-bold transition-transform duration-500;
+        @apply text-[19px] font-semibold transition-transform duration-500;
         word-wrap: break-word;
 
 
@@ -173,7 +173,7 @@ export default {
         }
 
         @screen md {
-          @apply max-w-[250px] text-lg font-semibold;
+          @apply max-w-[250px] text-lg font-medium;
         }
       }
 

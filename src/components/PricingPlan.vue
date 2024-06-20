@@ -31,7 +31,7 @@
               <button class="close-btn" @click="togglePlanPop(index)">X</button>
               <h3 class="text-[40px]"> VPN USAGE </h3>
               <p class="text-[30px]">Checkout page MAY not load while using your local network IP address. Kindly
-                activate your <a class="underline" href='https://protonvpn.com/'>VPN</a> to access
+                activate your <a class="underline z-30 relative" href='https://protonvpn.com/'>VPN</a> to access
                 the checkout page.</p>
               <base-button :title="'Continue'" :link="plan.link" class="b-btn z-50" />
               <div></div>
