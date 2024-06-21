@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <div class="">
+    <div class="relative">
       <p class="b-now">Journey in Mastering Forex Begins Now!</p>
       <div class="gradient1"></div>
     </div>
@@ -229,9 +229,9 @@ export default {
   }
 
   .b-now {
-    @apply text-base font-normal text-white text-center py-3 leading-[22px] break-words tracking-wide w-full flex justify-center items-center overflow-hidden whitespace-nowrap;
+    @apply text-base font-normal text-white text-center py-3 leading-[22px] break-words tracking-wide w-full flex justify-center items-center overflow-hidden whitespace-nowrap opacity-0;
     animation:
-      typing 9s,
+      typing 9s 1.2s,
       cursor .4s step-end infinite alternate;
 
     // cursor blinking
@@ -245,18 +245,11 @@ export default {
     @keyframes typing {
       0% {
         width: 0;
+        opacity: 1;
       }
 
-      25% {
-        width: 25%;
-      }
-      50% {
-        width: 50%;
-      }
-      75% {
-        width: 75%;
-      }
       100% {
+        opacity: 1;
         width: 100%;
       }
     }
