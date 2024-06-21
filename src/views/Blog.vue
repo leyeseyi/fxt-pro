@@ -29,7 +29,11 @@
           <h2>FXT Review</h2>
           <p>See what people have to say about us</p>
         </div>
-
+<!-- TrustBox widget - Review Collector -->
+<div class="trustpilot-widget xl:self-start xl:ml-10" data-locale="en-US" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="66745699c3b07e4b3657a5b0" data-style-height="52px" data-style-width="100%">
+  <a href="https://www.trustpilot.com/review/forexterminators.com" target="_blank" rel="noopener" class="flex items-center gap-1 border border-green-500 p-2">Review us on<img src="../assets/icon/logo-white.svg.jpg" height='25' width="25" alt="Trust pilot icon" /> <span class="font-semibold">Trustpilot</span></a>
+</div>
+<!-- End TrustBox widget -->
         <div class="reviews-card">
           <div class="card-wrap" v-for="(review, index) in reviews" :key="index">
             <review-card :review="review" />

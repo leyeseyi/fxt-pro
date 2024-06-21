@@ -231,7 +231,7 @@ export default {
   .b-now {
     @apply text-base font-normal text-white text-center py-3 leading-[22px] break-words tracking-wide w-full flex justify-center items-center overflow-hidden whitespace-nowrap;
     animation:
-      typing 9s,
+      typing 19s,
       cursor .4s step-end infinite alternate;
 
     // cursor blinking
