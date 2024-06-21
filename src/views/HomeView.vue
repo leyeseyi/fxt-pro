@@ -229,9 +229,9 @@ export default {
   }
 
   .b-now {
-    @apply text-base font-normal text-white text-center py-3 leading-[22px] break-words tracking-wide w-full flex justify-center items-center overflow-hidden whitespace-nowrap opacity-0;
+    @apply text-base font-normal text-white text-center py-3 leading-[22px] break-words tracking-wide w-full flex justify-center items-center overflow-hidden whitespace-nowrap;
     animation:
-      typing 9s 1.2s,
+      typing 9s,
       cursor .4s step-end infinite alternate;
 
     // cursor blinking
@@ -245,11 +245,9 @@ export default {
     @keyframes typing {
       0% {
         width: 0;
-        opacity: 1;
       }
 
       100% {
-        opacity: 1;
         width: 100%;
       }
     }
