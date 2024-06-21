@@ -15,7 +15,7 @@
     </div>
 
     <div class="relative">
-      <p class="b-now">Journey in Mastering Forex Begins Now!</p>
+      <p class="b-now typingEffect">Journey in Mastering Forex Begins Now!</p>
       <div class="gradient1"></div>
     </div>
 
@@ -219,7 +219,7 @@ export default {
     @apply mb-3;
 
     @screen md {
-      width:500px
+      width: 500px
     }
 
     @screen lg {
@@ -228,27 +228,27 @@ export default {
     }
   }
 
+
+
   .b-now {
     @apply text-base font-normal text-white text-center py-3 leading-[22px] break-words tracking-wide w-full flex justify-center items-center overflow-hidden whitespace-nowrap;
-    animation:
-      typing 9s,
-      cursor .4s step-end infinite alternate;
+    width: 0;
+    overflow: hidden;
+    /* Ensure the text is not visible until the typewriter effect*/
+    /* The cursor*/
+    font-size: 16px;
+    white-space: nowrap;
+    /* Keeps the text on a single line */
+    animation: typing 3s linear forwards 2s;
 
-    // cursor blinking
-    @keyframes cursor {
-      50% {
-        border-color: transparent
-      }
-    }
-
-    // typing effect
+    /* The typing animation */
     @keyframes typing {
-      0% {
-        width: 0;
+      from {
+        width: 0
       }
 
-      100% {
-        width: 100%;
+      to {
+        width: 100%
       }
     }
 
