@@ -10,7 +10,7 @@
           <div class="circle">
             <p class="inner-circle"></p>
           </div>
-          <p class="text">PAY WITH DOLLAR CARD/CRYPTO</p>
+          <p class="text">PAY WITH PAYSTACK, DOLLAR CARD/CRYPTO</p>
         </div>
         <div class="price-cards">
           <div class="plan" v-for="(plan, index) in pricingPlan" :key="index">
@@ -30,10 +30,22 @@
             <div v-if="plan.showPlanPop" class="plan-pop z-50">
               <button class="close-btn" @click="togglePlanPop(index)">X</button>
               <h3 class="text-[40px]"> VPN USAGE </h3>
-              <p class="text-[30px]">Checkout page MAY not load while using your local network IP address. Kindly
+              <p class="text-[30px]">Whop page MAY not load while using your local network IP address. Kindly
                 activate your <a class="underline z-30 relative" href='https://protonvpn.com/'>VPN</a> to access
-                the checkout page.</p>
-              <base-button :title="'Continue'" :link="plan.link" class="b-btn z-50" />
+                the whop page.</p>
+                <div class="payOn">
+                <div v-for="(option, optionIndex) in plan.payOn" :key="optionIndex">
+                  <label>
+                    <div class="flex items-start gap-3">
+                      <input type="radio" :value="option.name" v-model="selectedPaymentOption"
+                        @change="toggleInputFields(option)" />
+                      <img :src="option.img" :alt="option.name" class="relative h-[48px]" />
+                    </div>
+                    <p class="text-[15px]">{{ option.name }}</p>
+                  </label>
+                </div>
+              </div>
+              <base-button :title="'Continue'" :link="selectedPaymentLink" class="b-btn z-50" />
               <div></div>
               <img src="../assets/icon/middle-gradient.png" alt="gradient"
                 class="absolute bottom-0 top-0 z-20 opacity-[0.3]" />
@@ -48,6 +60,9 @@
 </template>
 
 <script>
+import paystack from '../assets/logo/paystack-logo.png';
+import whop from '../assets/logo/Whop-logo.png';
+
 export default {
   name: 'pricingPlan',
   data() {
@@ -66,6 +81,7 @@ export default {
             'Lifetime course access',
           ],
           showPlanPop: false,
+          payOn: [],
         },
         {
           rating: 'MOST POPULAR',
@@ -81,6 +97,13 @@ export default {
             '1 month subscription',
           ],
           showPlanPop: false,
+          payOn: [
+            {
+              name: "DOLLAR CARD/CRYPTO",
+              img: paystack,
+              link: "https://whop.com/checkout/plan_zd2m8IWnAKVae?d2c=true"
+            }
+          ]
         },
         {
           rating: 'MORE POPULAR',
@@ -97,6 +120,18 @@ export default {
             'Fundamental trading method',
           ],
           showPlanPop: false,
+          payOn: [
+            {
+              name: "BANK TRANSFER",
+              img: paystack,
+              link: "https://paystack.com/pay/FXTBEGINNERSCOURSE"
+            },
+            {
+              name: "DOLLAR CARD/CRYPTO",
+              img: whop,
+              link: "https://whop.com/checkout/plan_FtTRe1q9Pc7in?d2c=true"
+            }
+          ]
         },
         {
           rating: 'RECOMMENDED',
@@ -113,8 +148,23 @@ export default {
             'Fundamental trading method',
           ],
           showPlanPop: false,
-        },
+          payOn: [
+            {
+              name: "BANK TRANSFER",
+              img: paystack,
+              link: "https://paystack.com/pay/FXTADVANCEDCOURSE"
+            },
+            {
+              name: "DOLLAR CARD/CRYPTO",
+              img: whop,
+              link: "https://whop.com/checkout/plan_Bv0a0lQnVaLlA?d2c=true"
+            }
+          ]
+        }
       ],
+      selectedPlanIndex: null, // Default to no plan selected
+      selectedPaymentOption: "", // Default to an empty string
+      selectedPaymentLink: "" // Default to an empty string to store the selected link
     };
   },
   methods: {
@@ -125,8 +175,19 @@ export default {
         }
       });
       this.pricingPlan[index].showPlanPop = !this.pricingPlan[index].showPlanPop;
+      this.selectedPlanIndex = index; // Set the selected plan index
+      if (this.pricingPlan[index].payOn.length > 0) {
+        // Default to the first payment option if available
+        const firstOption = this.pricingPlan[index].payOn[0];
+        this.selectedPaymentOption = firstOption.name;
+        this.selectedPaymentLink = firstOption.link;
+      }
     },
-  },
+    toggleInputFields(option) {
+      this.selectedPaymentLink = option.link; // Set the link for the selected payment option
+      this.selectedPaymentOption = option.name; // Set the selected payment option
+    }
+  }
 };
 </script>
 
@@ -256,12 +317,16 @@ export default {
             }
           }
 
-          img {
-            @apply absolute bottom-0;
+          .payOn {
+            @apply flex justify-center w-full gap-8
           }
 
+          /* img {
+            @apply absolute bottom-0;
+          } */
+
           span {
-            @apply text-[12px] bg-[#8C0100] leading-[32.65px] absolute top-0 right-0 px-3 font-normal rounded-s-[14px] ;
+            @apply text-[12px] bg-[#8C0100] leading-[32.65px] absolute top-0 right-0 px-3 font-normal rounded-s-[14px];
 
             @screen sm {
               @apply text-[20px] py-1 rounded-tr-3xl
