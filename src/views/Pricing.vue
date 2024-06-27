@@ -1,5 +1,5 @@
 <template>
-  <div class="pricing-plan">
+  <div class="pricing-plan" v-motion-fade-visible>
     <pricing-plan />
   </div>
   <div class="stats" v-motion-pop-visible>

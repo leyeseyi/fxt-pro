@@ -17,7 +17,7 @@
           <div id="about" class="section" ref="about">
             <about/>
           </div>
-          <div id="pricing" class="section" ref="pricing">
+          <div id="membership" class="section" ref="membership">
             <pricing/>
           </div>
           <div id="fxt-store" class="section" ref="fxt-store">

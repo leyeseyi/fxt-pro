@@ -1,7 +1,7 @@
 <template>
   <div class="pricing">
     <div class="pricing-wrap">
-      <h2>Pricing Plan</h2>
+      <h2>MEMBERSHIP PLAN</h2>
 
       <div class="pricing-body">
         <p class="para">Empower your trading journey with Forex Terminators courses. Choose the plan that fits your
@@ -18,7 +18,10 @@
             <h3>{{ plan.plan }}</h3>
             <div class="gradient"></div>
             <h2>{{ plan.price }}</h2>
-            <base-button :title="'Get started'" @click="togglePlanPop(index)" class="b-btn z-[10]" />
+            <base-button v-if="pricingPlan[index].payOn.length > 0" :title="'Get started'" @click="togglePlanPop(index)"
+              class="b-btn z-[10]" />
+            <base-button v-if="pricingPlan[index].payOn.length === 0" :title="'Get started'"
+              :link="pricingPlan[index].link" class="b-btn z-[10]" />
             <div class="gradient"></div>
             <div class="pros">
               <div class="pro-wrap" v-for="(pro, index) in plan.packages" :key="index">
@@ -27,35 +30,89 @@
               </div>
             </div>
             <img v-lazy="{ src: srcPath }" class="gradient">
-            <div v-if="plan.showPlanPop" class="plan-pop z-50">
-              <button class="close-btn" @click="togglePlanPop(index)">X</button>
-              <h3 class="text-[40px]"> VPN USAGE </h3>
-              <p class="text-[30px]">Whop page MAY not load while using your local network IP address. Kindly
-                activate your <a class="underline z-30 relative" href='https://protonvpn.com/'>VPN</a> to access
-                the whop page.</p>
-                <div class="payOn">
-                <div v-for="(option, optionIndex) in plan.payOn" :key="optionIndex">
-                  <label>
-                    <div class="flex items-start gap-3">
-                      <input type="radio" :value="option.name" v-model="selectedPaymentOption"
-                        @change="toggleInputFields(option)" />
-                      <img :src="option.img" :alt="option.name" class="relative h-[48px]" />
-                    </div>
-                    <p class="text-[15px]">{{ option.name }}</p>
-                  </label>
-                </div>
-              </div>
-              <base-button :title="'Continue'" :link="selectedPaymentLink" class="b-btn z-50" />
-              <div></div>
-              <img src="../assets/icon/middle-gradient.png" alt="gradient"
-                class="absolute bottom-0 top-0 z-20 opacity-[0.3]" />
-            </div>
             <img src="../assets/icon/middle-gradient.png" alt="gradient"
               class="absolute bottom-10 z-20 opacity-[0.3]" />
           </div>
         </div>
+        <div v-if="selectedPlanIndex !== null" class="plan-pop z-50" v-motion-pop-visible>
+          <p><span class="text-[#8C0100]">FXT</span> Terms and Conditions</p>
+          <div class="h-[300px] overflow-y-scroll sm:h-auto sm:overflow-hidden">
+          Welcome to Forex Terminators! By accessing or using our website and services, you agree to the following
+          terms and conditions. Please read them carefully.
+          <p>Membership Eligibility and Application</p>
+          To join Forex Terminators, you must be at least 18 years old. Membership may require an application process,
+          including a
+          dedication test, to ensure that our community is filled with committed and enthusiastic traders. Some areas
+          of our community may require a membership fee, which will be clearly outlined during the sign-up process.
+          <p>User Responsibilities</p>
+          When you register, please provide accurate and complete information and keep it
+          updated. You are responsible for maintaining the confidentiality of your account information and for all
+          activities that occur under your account. Please comply with all applicable laws and these terms at all
+          times.
+          <p>Community Rules</p>
+          We have a set of community rules designed to ensure a positive and productive
+          environment for all members. By joining, you agree to adhere to these rules. Respect, professionalism, and
+          constructive feedback are key principles of our community.
+          <p>Intellectual Property </p>
+          All content provided by Forex Terminators, including educational materials, videos, articles, and other
+          resources, is the property
+          of the company. You are welcome to use this content for personal, non-commercial purposes, but please do not
+          copy, distribute, modify, or create derivative works from our content without our prior written consent.
+          <p>Termination of Membership </p>
+          You can terminate your membership at any time by notifying us. We reserve the
+          right to terminate or suspend your membership if you violate these terms or the community rules, or for any
+          other reason at our discretion.
+          <p>Disclaimer of Warranties </p>
+          Our services are provided "as is" without any warranties, express or implied. We do not guarantee the
+          accuracy, completeness, or reliability of any
+          content or services provided. Use our services at your own risk.
+          <p>Limitation of Liability </p>
+          Forex Terminators will not be liable for any indirect, incidental, special, or consequential damages arising
+          out of or in
+          connection with your use of our services.
+          <p>Indemnification </p>
+          You agree to indemnify and hold Forex Terminators, its officers, directors, employees, and agents harmless
+          from any claims, liabilities, damages, losses, and
+          expenses arising from your use of our services or violation of these terms.
+          <p>Changes to These Terms</p>
+          We may modify these terms at any time. If we make changes, we will notify you via email or through the
+          community
+          platform. Continued use of our services after such changes constitutes acceptance of the new terms.
+          <p>Governing Law </p>
+          These terms are governed by the laws of Nigeria. Any disputes arising from these terms will be
+          subject to the exclusive jurisdiction of the courts of Nigeria.
+
+        </div>
+
+          <p class="border-t border-t-[#00000065] w-[90%] mx-auto mt-2 "></p>
+          <p class="mb-10 mt-2">PayON</p>
+          <div class="payOn">
+            <div v-for="(option, optionIndex) in pricingPlan[selectedPlanIndex].payOn" :key="optionIndex">
+              <label>
+                <div class="flex items-start gap-3">
+                  <input type="radio" :value="option.name" v-model="selectedPaymentOption"
+                    @change="toggleInputFields(option)" />
+                  <img :src="option.img" :alt="option.name" class="relative h-[48px]" />
+                </div>
+                <p class="text-[15px]">{{ option.name }}</p>
+              </label>
+            </div>
+          </div>
+          <h6 class="italic my-3">Note: Whop page MAY not load while using your local network IP address. Kindly
+            activate your <a class="underline z-30 relative" href='https://protonvpn.com/'>VPN</a> to access
+            the whop page.</h6>
+          <div class="w-full sm:w-[60%] flex justify-between">
+            <button @click="closetogglePlanPop(selectedPlanIndex)" class="b-btn1 z-50 bg-black">Decline</button>
+            <a :href="selectedPaymentLink" class="b-btn1 z-50 bg-[#8C0100] text-center">Accept</a>
+          </div>
+          <div></div>
+          <img src="../assets/icon/middle-gradient.png" alt="gradient"
+            class="absolute bottom-0 top-0 z-20 opacity-[0.3]" />
+        </div>
+        <div v-if="selectedPlanIndex !== null" class="absolute bg-[#00000054] w-full h-full z-40"></div>
       </div>
     </div>
+    <div v-if="selectedPlanIndex !== null" class="pb-10 mb-5"></div>
   </div>
 </template>
 
@@ -85,29 +142,30 @@ export default {
         },
         {
           rating: 'MOST POPULAR',
-          plan: 'FXT Signal Course',
+          plan: 'BASIC MEMBERSHIP',
           price: '$25',
           link: 'https://whop.com/checkout/plan_zd2m8IWnAKVae?d2c=true',
           packages: [
+            'Signal service',
             'One - Three Trades per week',
             'Trading tutorial course',
             'Live News trading with Ken Jay',
             'Access to FXT community',
-            '10% discount on advanced course',
+            '10% discount on premium membership',
             '1 month subscription',
           ],
           showPlanPop: false,
           payOn: [
             {
               name: "DOLLAR CARD/CRYPTO",
-              img: paystack,
+              img: whop,
               link: "https://whop.com/checkout/plan_zd2m8IWnAKVae?d2c=true"
             }
           ]
         },
         {
           rating: 'MORE POPULAR',
-          plan: 'FXT Beginners Course',
+          plan: 'PREMIUM MEMBERSHIP',
           price: '$50',
           link: 'https://whop.com/checkout/plan_FtTRe1q9Pc7in?d2c=true',
           packages: [
@@ -115,8 +173,8 @@ export default {
             'One of FXT setup',
             'Weekly Webinars',
             'Access to FXT community',
-            '20% discount on advanced course',
-            'Lifetime Mentorship',
+            '20% discount on Elite membership',
+            'Lifetime Mentorship/membership',
             'Fundamental trading method',
           ],
           showPlanPop: false,
@@ -135,16 +193,16 @@ export default {
         },
         {
           rating: 'RECOMMENDED',
-          plan: 'FXT Advanced Course',
+          plan: 'ELITE MEMBERSHIP',
           price: '$200',
           link: 'https://whop.com/checkout/plan_Bv0a0lQnVaLlA?d2c=true',
           packages: [
-            'Recorded crash courses',
+            'Recorded advanced crash courses',
             'All of FXT setup',
             'Live trading with Ken Jay',
             'Access to FXT community',
             'One of FXT Merch',
-            'Lifetime Mentorship',
+            'Lifetime Mentorship/membership',
             'Fundamental trading method',
           ],
           showPlanPop: false,
@@ -182,6 +240,14 @@ export default {
         this.selectedPaymentOption = firstOption.name;
         this.selectedPaymentLink = firstOption.link;
       }
+    },
+    closetogglePlanPop(index) {
+      this.pricingPlan.forEach((plan, i) => {
+        if (i !== index) {
+          plan.showPlanPop = false;
+        }
+      });
+      this.selectedPlanIndex = null; // Set the selected plan index
     },
     toggleInputFields(option) {
       this.selectedPaymentLink = option.link; // Set the link for the selected payment option
@@ -258,12 +324,43 @@ export default {
         }
       }
 
+      .plan-pop {
+        @apply p-8 flex flex-col items-center justify-between rounded-3xl bg-white text-[#191919] absolute w-full text-left;
+
+        @screen sm {
+          @apply w-1/2
+        }
+
+        .close-btn {
+          @apply absolute top-2 right-2 text-black font-bold text-lg bg-[#AFAFAF] rounded-full w-8 h-8 flex items-center justify-center z-30;
+        }
+
+        p {
+          @apply text-center font-bold
+        }
+
+        .payOn {
+          @apply flex justify-center w-full gap-8
+        }
+
+        .b-btn1 {
+          @apply w-[45%] z-30  px-6 rounded-[44px] text-white text-[25px];
+
+          @screen sm {
+            @apply  py-2
+          }
+        }
+
+      }
+
       .price-cards {
         @apply flex flex-col gap-6;
 
         @screen md {
           @apply flex-row gap-8 flex-wrap justify-center;
         }
+
+
 
         .plan {
           @apply p-8 flex flex-col items-center justify-start gap-5 rounded-3xl bg-[#191919] text-white min-w-[350px] max-w-[400px] relative;
@@ -277,13 +374,7 @@ export default {
             }
           }
 
-          .plan-pop {
-            @apply p-8 flex flex-col items-center justify-between rounded-3xl bg-[#191919] text-white absolute bottom-0 left-0 right-0 top-0;
 
-            .close-btn {
-              @apply absolute top-2 right-2 text-black font-bold text-lg bg-[#AFAFAF] rounded-full w-8 h-8 flex items-center justify-center z-30;
-            }
-          }
 
           .gradient {
             min-width: inherit;
@@ -317,9 +408,7 @@ export default {
             }
           }
 
-          .payOn {
-            @apply flex justify-center w-full gap-8
-          }
+
 
           /* img {
             @apply absolute bottom-0;
@@ -336,6 +425,7 @@ export default {
           .b-btn {
             @apply w-full z-30;
           }
+
 
           .pros {
             @apply space-y-2 w-full;

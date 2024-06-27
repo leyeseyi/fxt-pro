@@ -14,8 +14,8 @@
             <li @click.prevent="handleAnchorClick('about')">
               <a href="#about" class="link"> Who we are</a>
             </li>
-            <li @click.prevent="handleAnchorClick('pricing')">
-              <a href="#pricing" class="link"> Pricing</a>
+            <li @click.prevent="handleAnchorClick('membership')">
+              <a href="#membership" class="link"> Membership</a>
             </li>
             <li @click.prevent="handleAnchorClick('fxt-store')">
               <a href="#fxt-store" class="link"> FXT Store</a>
