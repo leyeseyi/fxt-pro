@@ -232,61 +232,64 @@ export default {
       }
     },
     togglePlanPop(index) {
-    this.pricingPlan.forEach((plan, i) => {
-      if (i !== index) {
-        plan.showPlanPop = false;
-      }
-    });
-
-    this.pricingPlan[index].showPlanPop = !this.pricingPlan[index].showPlanPop;
-    this.selectedPlanIndex = index; // Set the selected plan index
-
-    if (this.pricingPlan[index].payOn.length > 0) {
-      // Default to the first payment option if available
-      const firstOption = this.pricingPlan[index].payOn[0];
-      this.selectedPaymentOption = firstOption.name;
-      this.selectedPaymentLink = firstOption.link;
-    }
-
-    if (this.pricingPlan[index].showPlanPop) {
-      this.$nextTick(() => {
-        document.body.style.overflow = 'hidden';
-        window.addEventListener('resize', this.handleResize);
-        this.adjustPopupHeight();
+      this.pricingPlan.forEach((plan, i) => {
+        if (i !== index) {
+          plan.showPlanPop = false;
+        }
       });
-    } else {
+
+      this.pricingPlan[index].showPlanPop = !this.pricingPlan[index].showPlanPop;
+      this.selectedPlanIndex = index; // Set the selected plan index
+
+      if (this.pricingPlan[index].payOn.length > 0) {
+        // Default to the first payment option if available
+        const firstOption = this.pricingPlan[index].payOn[0];
+        this.selectedPaymentOption = firstOption.name;
+        this.selectedPaymentLink = firstOption.link;
+      }
+
+      if (this.pricingPlan[index].showPlanPop) {
+        this.$nextTick(() => {
+          document.body.style.overflow = 'hidden';
+          window.addEventListener('resize', this.handleResize);
+          this.adjustPopupHeight();
+        });
+      } else {
+        document.body.style.overflow = '';
+        window.removeEventListener('resize', this.handleResize);
+      }
+    },
+
+    closetogglePlanPop(index) {
+      this.pricingPlan.forEach((plan, i) => {
+        if (i === index) {
+          plan.showPlanPop = false;
+        }
+      });
+
+      this.selectedPlanIndex = null;
       document.body.style.overflow = '';
       window.removeEventListener('resize', this.handleResize);
-    }
-  },
+      this.$refs['pricing'].style.height = "auto";
+    },
 
-  closetogglePlanPop(index) {
-    this.pricingPlan.forEach((plan, i) => {
-      if (i === index) {
-        plan.showPlanPop = false;
+    preventScroll(e) {
+      e.preventDefault();
+    },
+
+    adjustPopupHeight() {
+      if (window.innerWidth < 1000) {
+        document.body.addEventListener('wheel', this.preventScroll, { passive: false });
+        this.$refs['pricing'].style.height = window.innerHeight + 'px';
+        this.scrollToSection('pricing');
+      } else if(window.innerWidth > 1000 && window.innerWidth < 1500){
+        document.body.addEventListener('touchmove', this.preventScroll, { passive: false });
+       /*  this.$refs['pricing'].style.height = window.innerHeight + 'px'; */
+        this.scrollToSection('pricing');
+      }else {
+        document.body.removeEventListener('wheel', this.preventScroll, { passive: false });
+        this.scrollToSection('pricing-body');
       }
-    });
-
-    this.selectedPlanIndex = null;
-    document.body.style.overflow = '';
-    window.removeEventListener('resize', this.handleResize);
-    this.$refs['pricing'].style.height = "auto";
-  },
-
-  preventScroll(e) {
-    e.preventDefault();
-  },
-
-  adjustPopupHeight() {
-    if (window.innerWidth < 1000) {
-      document.body.addEventListener('wheel', this.preventScroll, { passive: false });
-      document.body.addEventListener('touchmove', this.preventScroll, { passive: false });
-      this.$refs['pricing'].style.height = window.innerHeight + 'px';
-      this.scrollToSection('pricing');
-    } else {
-      document.body.removeEventListener('wheel', this.preventScroll, { passive: false });
-      this.scrollToSection('pricing-body');
-    }
   },
 
   handleResize() {
@@ -294,11 +297,11 @@ export default {
   },
 
 
-    toggleInputFields(option) {
-      this.selectedPaymentLink = option.link; // Set the link for the selected payment option
-      this.selectedPaymentOption = option.name; // Set the selected payment option
-    }
+  toggleInputFields(option) {
+    this.selectedPaymentLink = option.link; // Set the link for the selected payment option
+    this.selectedPaymentOption = option.name; // Set the selected payment option
   }
+}
 };
 </script>
 
@@ -381,7 +384,7 @@ export default {
         border-radius: 0;
         overflow-y: auto;
 
-        @screen lg {
+        @screen xl {
           @apply w-1/2 rounded-3xl items-center justify-between;
           position: absolute;
           top: unset;
