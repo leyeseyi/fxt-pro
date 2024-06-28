@@ -250,6 +250,7 @@ export default {
 
       this.$nextTick(() => {
         document.body.style.overflow = 'hidden';
+        document.body.addEventListener('touchmove', function (e) { e.preventDefault(); }, { passive: false });
 
         if (window.innerWidth < 800) {
           this.$refs['pricing'].style.height = window.innerHeight + 'px';
