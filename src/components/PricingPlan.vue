@@ -3,7 +3,7 @@
     <div class="pricing-wrap">
       <h2>MEMBERSHIP PLAN</h2>
 
-      <div class="pricing-body">
+      <div class="pricing-body" ref="pricing-body">
         <p class="para">Empower your trading journey with Forex Terminators courses. Choose the plan that fits your
           goals and gain access to expert insights and a supportive community.</p>
         <div class="payment-method">
@@ -36,53 +36,53 @@
         </div>
         <div v-if="selectedPlanIndex !== null" class="plan-pop z-50" v-motion-pop-visible>
           <p><span class="text-[#8C0100]">FXT</span> Terms and Conditions</p>
-          <div class="h-[300px] overflow-y-scroll sm:h-auto sm:overflow-hidden">
-          Welcome to Forex Terminators! By accessing or using our website and services, you agree to the following
-          terms and conditions. Please read them carefully.
-          <p>Membership Eligibility and Application</p>
-          To join Forex Terminators, you must be at least 18 years old. Membership may require an application process,
-          including a
-          dedication test, to ensure that our community is filled with committed and enthusiastic traders. Some areas
-          of our community may require a membership fee, which will be clearly outlined during the sign-up process.
-          <p>User Responsibilities</p>
-          When you register, please provide accurate and complete information and keep it
-          updated. You are responsible for maintaining the confidentiality of your account information and for all
-          activities that occur under your account. Please comply with all applicable laws and these terms at all
-          times.
-          <p>Community Rules</p>
-          We have a set of community rules designed to ensure a positive and productive
-          environment for all members. By joining, you agree to adhere to these rules. Respect, professionalism, and
-          constructive feedback are key principles of our community.
-          <p>Intellectual Property </p>
-          All content provided by Forex Terminators, including educational materials, videos, articles, and other
-          resources, is the property
-          of the company. You are welcome to use this content for personal, non-commercial purposes, but please do not
-          copy, distribute, modify, or create derivative works from our content without our prior written consent.
-          <p>Termination of Membership </p>
-          You can terminate your membership at any time by notifying us. We reserve the
-          right to terminate or suspend your membership if you violate these terms or the community rules, or for any
-          other reason at our discretion.
-          <p>Disclaimer of Warranties </p>
-          Our services are provided "as is" without any warranties, express or implied. We do not guarantee the
-          accuracy, completeness, or reliability of any
-          content or services provided. Use our services at your own risk.
-          <p>Limitation of Liability </p>
-          Forex Terminators will not be liable for any indirect, incidental, special, or consequential damages arising
-          out of or in
-          connection with your use of our services.
-          <p>Indemnification </p>
-          You agree to indemnify and hold Forex Terminators, its officers, directors, employees, and agents harmless
-          from any claims, liabilities, damages, losses, and
-          expenses arising from your use of our services or violation of these terms.
-          <p>Changes to These Terms</p>
-          We may modify these terms at any time. If we make changes, we will notify you via email or through the
-          community
-          platform. Continued use of our services after such changes constitutes acceptance of the new terms.
-          <p>Governing Law </p>
-          These terms are governed by the laws of Nigeria. Any disputes arising from these terms will be
-          subject to the exclusive jurisdiction of the courts of Nigeria.
+          <div class="h-[300px] overflow-auto p-5">
+            Welcome to Forex Terminators! By accessing or using our website and services, you agree to the following
+            terms and conditions. Please read them carefully.
+            <p>Membership Eligibility and Application</p>
+            To join Forex Terminators, you must be at least 18 years old. Membership may require an application process,
+            including a
+            dedication test, to ensure that our community is filled with committed and enthusiastic traders. Some areas
+            of our community may require a membership fee, which will be clearly outlined during the sign-up process.
+            <p>User Responsibilities</p>
+            When you register, please provide accurate and complete information and keep it
+            updated. You are responsible for maintaining the confidentiality of your account information and for all
+            activities that occur under your account. Please comply with all applicable laws and these terms at all
+            times.
+            <p>Community Rules</p>
+            We have a set of community rules designed to ensure a positive and productive
+            environment for all members. By joining, you agree to adhere to these rules. Respect, professionalism, and
+            constructive feedback are key principles of our community.
+            <p>Intellectual Property </p>
+            All content provided by Forex Terminators, including educational materials, videos, articles, and other
+            resources, is the property
+            of the company. You are welcome to use this content for personal, non-commercial purposes, but please do not
+            copy, distribute, modify, or create derivative works from our content without our prior written consent.
+            <p>Termination of Membership </p>
+            You can terminate your membership at any time by notifying us. We reserve the
+            right to terminate or suspend your membership if you violate these terms or the community rules, or for any
+            other reason at our discretion.
+            <p>Disclaimer of Warranties </p>
+            Our services are provided "as is" without any warranties, express or implied. We do not guarantee the
+            accuracy, completeness, or reliability of any
+            content or services provided. Use our services at your own risk.
+            <p>Limitation of Liability </p>
+            Forex Terminators will not be liable for any indirect, incidental, special, or consequential damages arising
+            out of or in
+            connection with your use of our services.
+            <p>Indemnification </p>
+            You agree to indemnify and hold Forex Terminators, its officers, directors, employees, and agents harmless
+            from any claims, liabilities, damages, losses, and
+            expenses arising from your use of our services or violation of these terms.
+            <p>Changes to These Terms</p>
+            We may modify these terms at any time. If we make changes, we will notify you via email or through the
+            community
+            platform. Continued use of our services after such changes constitutes acceptance of the new terms.
+            <p>Governing Law </p>
+            These terms are governed by the laws of Nigeria. Any disputes arising from these terms will be
+            subject to the exclusive jurisdiction of the courts of Nigeria.
 
-        </div>
+          </div>
 
           <p class="border-t border-t-[#00000065] w-[90%] mx-auto mt-2 "></p>
           <p class="mb-10 mt-2">PayON</p>
@@ -226,6 +226,12 @@ export default {
     };
   },
   methods: {
+    scrollToSection(section) {
+      const sectionElement = this.$refs[section];
+      if (sectionElement) {
+        sectionElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    },
     togglePlanPop(index) {
       this.pricingPlan.forEach((plan, i) => {
         if (i !== index) {
@@ -240,6 +246,8 @@ export default {
         this.selectedPaymentOption = firstOption.name;
         this.selectedPaymentLink = firstOption.link;
       }
+      document.body.style.overflow = 'hidden';
+      this.scrollToSection('pricing-body')
     },
     closetogglePlanPop(index) {
       this.pricingPlan.forEach((plan, i) => {
@@ -248,6 +256,7 @@ export default {
         }
       });
       this.selectedPlanIndex = null; // Set the selected plan index
+      document.body.style.overflow = '';
     },
     toggleInputFields(option) {
       this.selectedPaymentLink = option.link; // Set the link for the selected payment option
@@ -325,7 +334,8 @@ export default {
       }
 
       .plan-pop {
-        @apply p-8 flex flex-col items-center justify-between rounded-3xl bg-white text-[#191919] absolute w-full text-left;
+        @apply p-8 flex flex-col items-center justify-between rounded-3xl bg-white text-[#191919] absolute w-[85%] text-left;
+
 
         @screen sm {
           @apply w-1/2
@@ -344,13 +354,43 @@ export default {
         }
 
         .b-btn1 {
-          @apply w-[45%] z-30  px-6 rounded-[44px] text-white text-[25px];
+          @apply w-[45%] z-30 px-6 rounded-[44px] text-white text-[25px] relative;
 
           @screen sm {
-            @apply  py-2
+            @apply py-2
           }
         }
+        .b-btn1:hover::before {
+          animation: shine 1.5s ease-out infinite;
+        }
 
+        .b-btn1::before {
+          content: "";
+          position: absolute;
+          width: 50px;
+          height: 100%;
+          background-image: linear-gradient(120deg,
+              rgba(255, 255, 255, 0) 30%,
+              rgba(255, 255, 255, 0.8),
+              rgba(255, 255, 255, 0) 70%);
+          top: 0;
+          left: -50px;
+          opacity: 0.6;
+        }
+
+        @keyframes shine {
+          0% {
+            left: -50px;
+          }
+
+          60% {
+            left: 100%;
+          }
+
+          to {
+            left: 100%;
+          }
+        }
       }
 
       .price-cards {
@@ -385,7 +425,8 @@ export default {
 
           h3 {
             @apply text-[18px] font-semibold uppercase text-center leading-normal;
-
+            font-family: 'Goudy Old Style';
+            
             @screen md {
               @apply text-[22px];
             }

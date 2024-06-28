@@ -77,26 +77,26 @@ export default {
           story: "This is the best forex community I've been in so far. Our tutor's strategies has helped me profit so well in the forex market",
           pic: require('../assets/display/Olaseni.webp'),
           name: "Olaseni O.",
-          status: "FXT Beginner Trader"
+          status: "Elite Member"
         },
         {
           story: "It has been an awesome journey. I have been able to understand different concepts in the forex market",
           pic: require('../assets/display/okafor.webp'),
           name: "Okafor A.",
-          status: "FXT Advanced Trader"
+          status: "Elite Member"
         },
         {
           story: "A Lively community geared and driven by a Motivated Leader. He knows what he is doing and I love it",
           pic: require('../assets/display/elisha damilola.webp'),
           name: "Elisha O.",
-          status: "FXT Beginner Trader"
+          status: "Premium Member"
         },
 
         {
           story: "I am currently taking the beginners course which contains about 43 lessons. The tutor broke the complex concepts to manageable bites and now Forex doesn't seem as insurmountable as it formally was to me",
           pic: require('../assets/display/_Favour Attah.webp'),
           name: "Favor A.",
-          status: "FXT Beginner Trader"
+          status: "Premium Member"
         },
 
       ]
