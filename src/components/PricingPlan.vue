@@ -361,7 +361,7 @@ export default {
       }
 
       .plan-pop {
-        @apply p-8 flex flex-col bg-white text-[#191919] w-full text-left;
+        @apply p-8 flex flex-col bg-white text-[#191919] w-[95%] text-left;
         position: fixed;
         top: 0;
         left: 0;
