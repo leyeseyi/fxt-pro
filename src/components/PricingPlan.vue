@@ -232,59 +232,66 @@ export default {
       }
     },
     togglePlanPop(index) {
-      this.pricingPlan.forEach((plan, i) => {
-        if (i !== index) {
-          plan.showPlanPop = false;
-        }
-      });
-
-      this.pricingPlan[index].showPlanPop = !this.pricingPlan[index].showPlanPop;
-      this.selectedPlanIndex = index; // Set the selected plan index
-
-      if (this.pricingPlan[index].payOn.length > 0) {
-        // Default to the first payment option if available
-        const firstOption = this.pricingPlan[index].payOn[0];
-        this.selectedPaymentOption = firstOption.name;
-        this.selectedPaymentLink = firstOption.link;
+    this.pricingPlan.forEach((plan, i) => {
+      if (i !== index) {
+        plan.showPlanPop = false;
       }
+    });
 
-      if (this.pricingPlan[index].showPlanPop) {
-        this.$nextTick(() => {
-          document.body.style.overflow = 'hidden';
-          
-          if (window.innerWidth < 800) {
-            document.body.addEventListener('wheel', this.preventScroll, { passive: false });
-            this.$refs['pricing'].style.height = window.innerHeight + 'px';
-            this.scrollToSection('pricing');
-          } else {
-            document.body.removeEventListener('wheel', this.preventScroll, { passive: false });
-            this.scrollToSection('pricing-body');
-          }
-        });
-      } else {
-        document.body.style.overflow = '';
-        document.body.removeEventListener('wheel', this.preventScroll, { passive: false });
-      }
-    },
+    this.pricingPlan[index].showPlanPop = !this.pricingPlan[index].showPlanPop;
+    this.selectedPlanIndex = index; // Set the selected plan index
 
-    closetogglePlanPop(index) {
-      // Update the showPlanPop state for the given index
-      this.pricingPlan.forEach((plan, i) => {
-        if (i === index) {
-          plan.showPlanPop = false;
-        }
+    if (this.pricingPlan[index].payOn.length > 0) {
+      // Default to the first payment option if available
+      const firstOption = this.pricingPlan[index].payOn[0];
+      this.selectedPaymentOption = firstOption.name;
+      this.selectedPaymentLink = firstOption.link;
+    }
+
+    if (this.pricingPlan[index].showPlanPop) {
+      this.$nextTick(() => {
+        document.body.style.overflow = 'hidden';
+        window.addEventListener('resize', this.handleResize);
+        this.adjustPopupHeight();
       });
-
-      // Reset the selected plan index and other properties
-      this.selectedPlanIndex = null;
+    } else {
       document.body.style.overflow = '';
-      document.body.removeEventListener('wheel', this.preventScroll, { passive: false });
-      this.$refs['pricing'].style.height = "auto";
-    },
+      window.removeEventListener('resize', this.handleResize);
+    }
+  },
 
-    preventScroll(e) {
-      e.preventDefault();
-    },
+  closetogglePlanPop(index) {
+    this.pricingPlan.forEach((plan, i) => {
+      if (i === index) {
+        plan.showPlanPop = false;
+      }
+    });
+
+    this.selectedPlanIndex = null;
+    document.body.style.overflow = '';
+    window.removeEventListener('resize', this.handleResize);
+    this.$refs['pricing'].style.height = "auto";
+  },
+
+  preventScroll(e) {
+    e.preventDefault();
+  },
+
+  adjustPopupHeight() {
+    if (window.innerWidth < 1000) {
+      document.body.addEventListener('wheel', this.preventScroll, { passive: false });
+      this.$refs['pricing'].style.height = window.innerHeight + 'px';
+      this.scrollToSection('pricing');
+    } else {
+      document.body.removeEventListener('wheel', this.preventScroll, { passive: false });
+      this.scrollToSection('pricing-body');
+    }
+  },
+
+  handleResize() {
+    this.adjustPopupHeight();
+  },
+
 
     toggleInputFields(option) {
       this.selectedPaymentLink = option.link; // Set the link for the selected payment option
