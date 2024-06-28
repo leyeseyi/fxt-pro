@@ -280,9 +280,13 @@ export default {
     },
 
     adjustPopupHeight() {
-      if (window.innerWidth < 1000) {
+      if (window.innerWidth < 600) {
         document.body.addEventListener('wheel', this.preventScroll, { passive: false });
         this.$refs['pricing'].style.height = window.innerHeight + 'px';
+        this.scrollToSection('pricing');
+      }else if (window.innerWidth > 700 && window.innerWidth < 1000) {
+        document.body.addEventListener('touchmove', this.preventScroll, { passive: false });
+        /*  this.$refs['pricing'].style.height = window.innerHeight + 'px'; */
         this.scrollToSection('pricing');
       } else if (window.innerWidth > 1000 && window.innerWidth < 1700) {
         document.body.addEventListener('touchmove', this.preventScroll, { passive: false });
