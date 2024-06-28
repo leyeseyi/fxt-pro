@@ -246,6 +246,7 @@ export default {
         this.selectedPaymentLink = firstOption.link;
       }
         document.body.style.overflow = 'hidden';
+        document.body.addEventListener('touchmove', function(e){ e.preventDefault(); });
       if (window.innerWidth < 500) {
        this.$refs['pricing'].style.height = window.innerHeight + 'px';
        this.scrollToSection('pricing')
