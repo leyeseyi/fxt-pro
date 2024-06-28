@@ -250,7 +250,6 @@ export default {
 
       this.$nextTick(() => {
         document.body.style.overflow = 'hidden';
-        document.body.addEventListener('touchmove', function (e) { e.preventDefault(); }, { passive: false });
 
         if (window.innerWidth < 800) {
           this.$refs['pricing'].style.height = window.innerHeight + 'px';
@@ -271,7 +270,6 @@ export default {
       // Reset the selected plan index and other properties
       this.selectedPlanIndex = null;
       document.body.style.overflow = '';
-      document.body.removeEventListener('touchmove', function (e) { e.preventDefault(); }, { passive: false });
       this.$refs['pricing'].style.height = "auto";
     },
 
