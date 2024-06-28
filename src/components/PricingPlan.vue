@@ -1,5 +1,5 @@
 <template>
-  <div class="pricing">
+  <div class="pricing" ref="pricing">
     <div class="pricing-wrap">
       <h2>MEMBERSHIP PLAN</h2>
 
@@ -12,7 +12,7 @@
           </div>
           <p class="text">PAY WITH PAYSTACK, DOLLAR CARD/CRYPTO</p>
         </div>
-        <div class="price-cards">
+        <div class="price-cards" ref="price-cards">
           <div class="plan" v-for="(plan, index) in pricingPlan" :key="index">
             <span>{{ plan.rating }}</span>
             <h3>{{ plan.plan }}</h3>
@@ -34,7 +34,7 @@
               class="absolute bottom-10 z-20 opacity-[0.3]" />
           </div>
         </div>
-        <div v-if="selectedPlanIndex !== null" class="plan-pop z-50" v-motion-pop-visible>
+        <div v-if="selectedPlanIndex !== null" class="plan-pop z-50" ref="pop" >
           <p><span class="text-[#8C0100]">FXT</span> Terms and Conditions</p>
           <div class="h-[300px] overflow-auto p-5">
             Welcome to Forex Terminators! By accessing or using our website and services, you agree to the following
@@ -101,13 +101,12 @@
           <h6 class="italic my-3">Note: Whop page MAY not load while using your local network IP address. Kindly
             activate your <a class="underline z-30 relative" href='https://protonvpn.com/'>VPN</a> to access
             the whop page.</h6>
-          <div class="w-full sm:w-[60%] flex justify-between">
+          <div class="w-full sm:w-[60%] sm:m-auto flex justify-between">
             <button @click="closetogglePlanPop(selectedPlanIndex)" class="b-btn1 z-50 bg-black">Decline</button>
             <a :href="selectedPaymentLink" class="b-btn1 z-50 bg-[#8C0100] text-center">Accept</a>
           </div>
           <div></div>
-          <img src="../assets/icon/middle-gradient.png" alt="gradient"
-            class="absolute bottom-0 top-0 z-20 opacity-[0.3]" />
+         
         </div>
         <div v-if="selectedPlanIndex !== null" class="absolute bg-[#00000054] w-full h-full z-40"></div>
       </div>
@@ -146,7 +145,7 @@ export default {
           price: '$25',
           link: 'https://whop.com/checkout/plan_zd2m8IWnAKVae?d2c=true',
           packages: [
-            'Signal service',
+            'FXT VIP Signals',
             'One - Three Trades per week',
             'Trading tutorial course',
             'Live News trading with Ken Jay',
@@ -246,8 +245,13 @@ export default {
         this.selectedPaymentOption = firstOption.name;
         this.selectedPaymentLink = firstOption.link;
       }
-      document.body.style.overflow = 'hidden';
-      this.scrollToSection('pricing-body')
+        document.body.style.overflow = 'hidden';
+      if (window.innerWidth < 500) {
+       this.$refs['pricing'].style.height = window.innerHeight + 'px';
+       this.scrollToSection('pricing')
+      } else {
+        this.scrollToSection('pricing-body')
+      }
     },
     closetogglePlanPop(index) {
       this.pricingPlan.forEach((plan, i) => {
@@ -257,6 +261,7 @@ export default {
       });
       this.selectedPlanIndex = null; // Set the selected plan index
       document.body.style.overflow = '';
+      this.$refs['pricing'].style.height = "auto";
     },
     toggleInputFields(option) {
       this.selectedPaymentLink = option.link; // Set the link for the selected payment option
@@ -334,11 +339,27 @@ export default {
       }
 
       .plan-pop {
-        @apply p-8 flex flex-col items-center justify-between rounded-3xl bg-white text-[#191919] absolute w-[85%] text-left;
-
+        @apply p-8 flex flex-col  bg-white text-[#191919] w-full text-left;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        border-radius: 0;
 
         @screen sm {
-          @apply w-1/2
+          @apply w-1/2 rounded-3xl items-center justify-between;
+          position: absolute;
+          top: unset;
+        left: unset;
+        right: unset;
+        bottom: unset;
+        justify-content: unset;
+        align-items: unset;
+        height: unset;
         }
 
         .close-btn {
@@ -360,6 +381,7 @@ export default {
             @apply py-2
           }
         }
+
         .b-btn1:hover::before {
           animation: shine 1.5s ease-out infinite;
         }
@@ -426,7 +448,7 @@ export default {
           h3 {
             @apply text-[18px] font-semibold uppercase text-center leading-normal;
             font-family: 'Goudy Old Style';
-            
+
             @screen md {
               @apply text-[22px];
             }
