@@ -280,6 +280,7 @@ export default {
   adjustPopupHeight() {
     if (window.innerWidth < 1000) {
       document.body.addEventListener('wheel', this.preventScroll, { passive: false });
+      document.body.addEventListener('touchmove', this.preventScroll, { passive: false });
       this.$refs['pricing'].style.height = window.innerHeight + 'px';
       this.scrollToSection('pricing');
     } else {
