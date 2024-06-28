@@ -370,6 +370,7 @@ export default {
         align-items: center;
         height: 100vh;
         border-radius: 0;
+        overflow-y: auto;
 
         @screen lg {
           @apply w-1/2 rounded-3xl items-center justify-between;
