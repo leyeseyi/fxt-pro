@@ -36,7 +36,7 @@
         </div>
         <div v-if="selectedPlanIndex !== null" class="plan-pop z-50" ref="pop">
           <p><span class="text-[#8C0100]">FXT</span> Terms and Conditions</p>
-          <div class="h-[300px] overflow-auto p-5">
+          <div class="h-[300px] overflow-auto p-5" ref="scr">
             Welcome to Forex Terminators! By accessing or using our website and services, you agree to the following
             terms and conditions. Please read them carefully.
             <p>Membership Eligibility and Application</p>
@@ -280,11 +280,12 @@ export default {
     },
 
     adjustPopupHeight() {
-      if (window.innerWidth < 600) {
+      if (window.innerWidth < 1000) {
         document.body.addEventListener('wheel', this.preventScroll, { passive: false });
+        this.$refs['scr'].style.overflow = "scroll";
         this.$refs['pricing'].style.height = window.innerHeight + 'px';
         this.scrollToSection('pricing');
-      }else if (window.innerWidth > 700 && window.innerWidth < 1000) {
+      }else if (window.innerWidth > 1000 && window.innerWidth < 1700) {
         document.body.addEventListener('touchmove', this.preventScroll, { passive: false });
         /*  this.$refs['pricing'].style.height = window.innerHeight + 'px'; */
         this.scrollToSection('pricing');
