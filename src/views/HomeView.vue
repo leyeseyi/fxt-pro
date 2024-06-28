@@ -3,7 +3,7 @@
     <div class="home-wrap">
       <div class="landing-text" v-motion-slide-visible-top>
         <h2>Master Forex with Ease: Your Gateway To Simplicity and Profitability at Forex Terminators</h2>
-        <button class="btn1 gradient-underline" @click="scrollToSection('pricing')">
+        <button class="btn1 gradient-underline" @click="scrollToSection('membership')">
           <p><span class="text-[#8C0100]">FXT</span> Free Resources</p>
         </button>
 
