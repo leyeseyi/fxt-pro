@@ -108,7 +108,7 @@
           <div></div>
 
         </div>
-        <div v-if="selectedPlanIndex !== null" class="hidden lg:absolute bg-[#00000054] w-full h-full z-40"></div>
+        <div v-if="selectedPlanIndex !== null" class="hidden lg:block absolute bg-[#00000054] w-full h-full z-40"></div>
       </div>
     </div>
     <div v-if="selectedPlanIndex !== null" class="pb-10 mb-5"></div>
@@ -257,6 +257,7 @@ export default {
             this.$refs['pricing'].style.height = window.innerHeight + 'px';
             this.scrollToSection('pricing');
           } else {
+            document.body.removeEventListener('wheel', this.preventScroll, { passive: false });
             this.scrollToSection('pricing-body');
           }
         });
