@@ -150,7 +150,7 @@ export default {
             'Trading tutorial course',
             'Live News trading with Ken Jay',
             'Access to FXT community',
-            '10% discount on premium membership',
+            '10% discount on premium plan',
             '1 month subscription',
           ],
           showPlanPop: false,
