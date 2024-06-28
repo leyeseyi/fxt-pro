@@ -282,26 +282,26 @@ export default {
         document.body.addEventListener('wheel', this.preventScroll, { passive: false });
         this.$refs['pricing'].style.height = window.innerHeight + 'px';
         this.scrollToSection('pricing');
-      } else if(window.innerWidth > 1000 && window.innerWidth < 1700){
+      } else if (window.innerWidth > 1000 && window.innerWidth < 1700) {
         document.body.addEventListener('touchmove', this.preventScroll, { passive: false });
-       /*  this.$refs['pricing'].style.height = window.innerHeight + 'px'; */
+        /*  this.$refs['pricing'].style.height = window.innerHeight + 'px'; */
         this.scrollToSection('pricing');
-      }else {
+      } else {
         document.body.removeEventListener('wheel', this.preventScroll, { passive: false });
         this.scrollToSection('pricing-body');
       }
-  },
+    },
 
-  handleResize() {
-    this.adjustPopupHeight();
-  },
+    handleResize() {
+      this.adjustPopupHeight();
+    },
 
 
-  toggleInputFields(option) {
-    this.selectedPaymentLink = option.link; // Set the link for the selected payment option
-    this.selectedPaymentOption = option.name; // Set the selected payment option
+    toggleInputFields(option) {
+      this.selectedPaymentLink = option.link; // Set the link for the selected payment option
+      this.selectedPaymentOption = option.name; // Set the selected payment option
+    }
   }
-}
 };
 </script>
 
@@ -384,7 +384,8 @@ export default {
         border-radius: 0;
         overflow-y: auto;
 
-        @screen xll {
+
+        @media (min-width: 1780px) {
           @apply w-1/2 rounded-3xl items-center justify-between;
           position: absolute;
           top: unset;
