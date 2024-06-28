@@ -34,7 +34,7 @@
               class="absolute bottom-10 z-20 opacity-[0.3]" />
           </div>
         </div>
-        <div v-if="selectedPlanIndex !== null" class="plan-pop z-50" ref="pop" >
+        <div v-if="selectedPlanIndex !== null" class="plan-pop z-50" ref="pop">
           <p><span class="text-[#8C0100]">FXT</span> Terms and Conditions</p>
           <div class="h-[300px] overflow-auto p-5">
             Welcome to Forex Terminators! By accessing or using our website and services, you agree to the following
@@ -106,7 +106,7 @@
             <a :href="selectedPaymentLink" class="b-btn1 z-50 bg-[#8C0100] text-center">Accept</a>
           </div>
           <div></div>
-         
+
         </div>
         <div v-if="selectedPlanIndex !== null" class="absolute bg-[#00000054] w-full h-full z-40"></div>
       </div>
@@ -237,22 +237,28 @@ export default {
           plan.showPlanPop = false;
         }
       });
+
       this.pricingPlan[index].showPlanPop = !this.pricingPlan[index].showPlanPop;
       this.selectedPlanIndex = index; // Set the selected plan index
+
       if (this.pricingPlan[index].payOn.length > 0) {
         // Default to the first payment option if available
         const firstOption = this.pricingPlan[index].payOn[0];
         this.selectedPaymentOption = firstOption.name;
         this.selectedPaymentLink = firstOption.link;
       }
+
+      this.$nextTick(() => {
         document.body.style.overflow = 'hidden';
-        document.body.addEventListener('touchmove', function(e){ e.preventDefault(); });
-      if (window.innerWidth < 500) {
-       this.$refs['pricing'].style.height = window.innerHeight + 'px';
-       this.scrollToSection('pricing')
-      } else {
-        this.scrollToSection('pricing-body')
-      }
+        document.body.addEventListener('touchmove', function (e) { e.preventDefault(); }, { passive: false });
+
+        if (window.innerWidth < 500) {
+          this.$refs['pricing'].style.height = window.innerHeight + 'px';
+          this.scrollToSection('pricing');
+        } else {
+          this.scrollToSection('pricing-body');
+        }
+      });
     },
     closetogglePlanPop(index) {
       this.pricingPlan.forEach((plan, i) => {
@@ -340,7 +346,7 @@ export default {
       }
 
       .plan-pop {
-        @apply p-8 flex flex-col  bg-white text-[#191919] w-full text-left;
+        @apply p-8 flex flex-col bg-white text-[#191919] w-full text-left;
         position: fixed;
         top: 0;
         left: 0;
@@ -354,12 +360,12 @@ export default {
           @apply w-1/2 rounded-3xl items-center justify-between;
           position: absolute;
           top: unset;
-        left: unset;
-        right: unset;
-        bottom: unset;
-        justify-content: unset;
-        align-items: unset;
-        height: unset;
+          left: unset;
+          right: unset;
+          bottom: unset;
+          justify-content: unset;
+          align-items: unset;
+          height: unset;
         }
 
         .close-btn {
