@@ -232,48 +232,58 @@ export default {
       }
     },
     togglePlanPop(index) {
-      this.pricingPlan.forEach((plan, i) => {
-        if (i !== index) {
-          plan.showPlanPop = false;
-        }
-      });
-
-      this.pricingPlan[index].showPlanPop = !this.pricingPlan[index].showPlanPop;
-      this.selectedPlanIndex = index; // Set the selected plan index
-
-      if (this.pricingPlan[index].payOn.length > 0) {
-        // Default to the first payment option if available
-        const firstOption = this.pricingPlan[index].payOn[0];
-        this.selectedPaymentOption = firstOption.name;
-        this.selectedPaymentLink = firstOption.link;
+    this.pricingPlan.forEach((plan, i) => {
+      if (i !== index) {
+        plan.showPlanPop = false;
       }
+    });
+    
+    this.pricingPlan[index].showPlanPop = !this.pricingPlan[index].showPlanPop;
+    this.selectedPlanIndex = index; // Set the selected plan index
 
+    if (this.pricingPlan[index].payOn.length > 0) {
+      // Default to the first payment option if available
+      const firstOption = this.pricingPlan[index].payOn[0];
+      this.selectedPaymentOption = firstOption.name;
+      this.selectedPaymentLink = firstOption.link;
+    }
+
+    if (this.pricingPlan[index].showPlanPop) {
       this.$nextTick(() => {
         document.body.style.overflow = 'hidden';
-        document.body.addEventListener('touchmove', function (e) { e.preventDefault(); }, { passive: false });
+        document.body.addEventListener('touchmove', this.preventScroll, { passive: false });
 
-        if (window.innerWidth < 800) {
+        if (window.innerWidth < 500) {
           this.$refs['pricing'].style.height = window.innerHeight + 'px';
           this.scrollToSection('pricing');
         } else {
           this.scrollToSection('pricing-body');
         }
       });
-    },
-    closetogglePlanPop(index) {
-      // Update the showPlanPop state for the given index
-      this.pricingPlan.forEach((plan, i) => {
-        if (i === index) {
-          plan.showPlanPop = false;
-        }
-      });
-
-      // Reset the selected plan index and other properties
-      this.selectedPlanIndex = null;
+    } else {
       document.body.style.overflow = '';
-      this.$refs['pricing'].style.height = "auto";
-    },
+      document.body.removeEventListener('touchmove', this.preventScroll, { passive: false });
+    }
+  },
 
+  closetogglePlanPop(index) {
+    // Update the showPlanPop state for the given index
+    this.pricingPlan.forEach((plan, i) => {
+      if (i === index) {
+        plan.showPlanPop = false;
+      }
+    });
+
+    // Reset the selected plan index and other properties
+    this.selectedPlanIndex = null;
+    document.body.style.overflow = '';
+    document.body.removeEventListener('touchmove', this.preventScroll, { passive: false });
+    this.$refs['pricing'].style.height = "auto";
+  },
+
+  preventScroll(e) {
+    e.preventDefault();
+  },
     toggleInputFields(option) {
       this.selectedPaymentLink = option.link; // Set the link for the selected payment option
       this.selectedPaymentOption = option.name; // Set the selected payment option
