@@ -271,7 +271,7 @@ export default {
       // Reset the selected plan index and other properties
       this.selectedPlanIndex = null;
       document.body.style.overflow = '';
-      document.body.removeEventListener('touchmove', this.preventScroll, { passive: false });
+      document.body.removeEventListener('touchmove', function (e) { e.preventDefault(); }, { passive: false });
       this.$refs['pricing'].style.height = "auto";
     },
 
