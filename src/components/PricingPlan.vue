@@ -108,7 +108,7 @@
           <div></div>
 
         </div>
-        <div v-if="selectedPlanIndex !== null" class="absolute bg-[#00000054] w-full h-full z-40"></div>
+        <div v-if="selectedPlanIndex !== null" class="hidden lg:absolute bg-[#00000054] w-full h-full z-40"></div>
       </div>
     </div>
     <div v-if="selectedPlanIndex !== null" class="pb-10 mb-5"></div>
@@ -361,7 +361,7 @@ export default {
       }
 
       .plan-pop {
-        @apply p-8 flex flex-col bg-white text-[#191919] w-[95%] text-left;
+        @apply p-8 flex flex-col bg-white text-[#191919] w-full text-left;
         position: fixed;
         top: 0;
         left: 0;
