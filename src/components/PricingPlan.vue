@@ -251,7 +251,7 @@ export default {
       if (this.pricingPlan[index].showPlanPop) {
         this.$nextTick(() => {
           document.body.style.overflow = 'hidden';
-          document.body.addEventListener('touchmove', this.preventScroll, { passive: false });
+          document.body.addEventListener('wheel', this.preventScroll, { passive: false });
 
           if (window.innerWidth < 800) {
             this.$refs['pricing'].style.height = window.innerHeight + 'px';
@@ -262,7 +262,7 @@ export default {
         });
       } else {
         document.body.style.overflow = '';
-        document.body.removeEventListener('touchmove', this.preventScroll, { passive: false });
+        document.body.removeEventListener('wheel', this.preventScroll, { passive: false });
       }
     },
 
@@ -277,7 +277,7 @@ export default {
       // Reset the selected plan index and other properties
       this.selectedPlanIndex = null;
       document.body.style.overflow = '';
-      document.body.removeEventListener('touchmove', this.preventScroll, { passive: false });
+      document.body.removeEventListener('wheel', this.preventScroll, { passive: false });
       this.$refs['pricing'].style.height = "auto";
     },
 
