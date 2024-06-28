@@ -252,7 +252,7 @@ export default {
         document.body.style.overflow = 'hidden';
         document.body.addEventListener('touchmove', function (e) { e.preventDefault(); }, { passive: false });
 
-        if (window.innerWidth < 500) {
+        if (window.innerWidth < 800) {
           this.$refs['pricing'].style.height = window.innerHeight + 'px';
           this.scrollToSection('pricing');
         } else {
@@ -261,15 +261,20 @@ export default {
       });
     },
     closetogglePlanPop(index) {
+      // Update the showPlanPop state for the given index
       this.pricingPlan.forEach((plan, i) => {
-        if (i !== index) {
+        if (i === index) {
           plan.showPlanPop = false;
         }
       });
-      this.selectedPlanIndex = null; // Set the selected plan index
+
+      // Reset the selected plan index and other properties
+      this.selectedPlanIndex = null;
       document.body.style.overflow = '';
+      document.body.removeEventListener('touchmove', this.preventScroll, { passive: false });
       this.$refs['pricing'].style.height = "auto";
     },
+
     toggleInputFields(option) {
       this.selectedPaymentLink = option.link; // Set the link for the selected payment option
       this.selectedPaymentOption = option.name; // Set the selected payment option
@@ -356,7 +361,7 @@ export default {
         height: 100vh;
         border-radius: 0;
 
-        @screen sm {
+        @screen lg {
           @apply w-1/2 rounded-3xl items-center justify-between;
           position: absolute;
           top: unset;
