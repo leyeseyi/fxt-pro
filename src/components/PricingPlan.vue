@@ -282,7 +282,7 @@ export default {
         document.body.addEventListener('wheel', this.preventScroll, { passive: false });
         this.$refs['pricing'].style.height = window.innerHeight + 'px';
         this.scrollToSection('pricing');
-      } else if(window.innerWidth > 1000 && window.innerWidth < 1500){
+      } else if(window.innerWidth > 1000 && window.innerWidth < 1700){
         document.body.addEventListener('touchmove', this.preventScroll, { passive: false });
        /*  this.$refs['pricing'].style.height = window.innerHeight + 'px'; */
         this.scrollToSection('pricing');
@@ -384,7 +384,7 @@ export default {
         border-radius: 0;
         overflow-y: auto;
 
-        @screen xl {
+        @screen xll {
           @apply w-1/2 rounded-3xl items-center justify-between;
           position: absolute;
           top: unset;
