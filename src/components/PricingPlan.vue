@@ -269,6 +269,8 @@ export default {
 
       this.selectedPlanIndex = null;
       document.body.style.overflow = '';
+      document.body.removeEventListener('wheel', this.preventScroll, { passive: false });
+      document.body.removeEventListener('touchmove', this.preventScroll, { passive: false });
       window.removeEventListener('resize', this.handleResize);
       this.$refs['pricing'].style.height = "auto";
     },
@@ -385,7 +387,7 @@ export default {
         overflow-y: auto;
 
 
-        @media (min-width: 1780px) {
+        @media (min-width: 1700px) {
           @apply w-1/2 rounded-3xl items-center justify-between;
           position: absolute;
           top: unset;
