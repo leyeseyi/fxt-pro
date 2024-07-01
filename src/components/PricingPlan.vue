@@ -275,9 +275,12 @@ export default {
     },
     hideOtherSections(hide) {
       const sections = document.getElementsByClassName('section-to-hide');
-      for (let i = 0; i < sections.length; i++) {
-        sections[i].style.display = hide ? 'none' : '';
+      if (window.innerWidth < 1700) {
+        for (let i = 0; i < sections.length; i++) {
+          sections[i].style.display = hide ? 'none' : '';
+        }
       }
+
     },
     preventScroll(e) {
       e.preventDefault();
