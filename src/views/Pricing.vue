@@ -2,7 +2,7 @@
   <div class="pricing-plan" v-motion-fade-visible>
     <pricing-plan />
   </div>
-  <div class="stats" v-motion-pop-visible>
+  <div class="stats section-to-hide" v-motion-pop-visible>
     <h2 class="title">Don't take our words for it.</h2>
     <p class="sub-title">Let the stats tell the story. Forex Terminators: where traders thrive, profits multiply, and
       success becomes a

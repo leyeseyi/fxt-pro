@@ -12,7 +12,7 @@
           </div>
           <p class="text">PAY WITH PAYSTACK, DOLLAR CARD/CRYPTO</p>
         </div>
-        <div class="price-cards" ref="price-cards">
+        <div class="price-cards section-to-hide" ref="price-cards">
           <div class="plan" v-for="(plan, index) in pricingPlan" :key="index">
             <span>{{ plan.rating }}</span>
             <h3>{{ plan.plan }}</h3>
@@ -251,11 +251,13 @@ export default {
       if (this.pricingPlan[index].showPlanPop) {
         this.$nextTick(() => {
           document.body.style.overflow = 'hidden';
+          this.hideOtherSections(true);
           window.addEventListener('resize', this.handleResize);
           this.adjustPopupHeight();
         });
       } else {
         document.body.style.overflow = '';
+        this.hideOtherSections(false);
         window.removeEventListener('resize', this.handleResize);
       }
     },
@@ -266,35 +268,29 @@ export default {
           plan.showPlanPop = false;
         }
       });
-
-      this.selectedPlanIndex = null;
       document.body.style.overflow = '';
-      document.body.removeEventListener('wheel', this.preventScroll, { passive: false });
-      document.body.removeEventListener('touchmove', this.preventScroll, { passive: false });
+      this.selectedPlanIndex = null;
+      this.hideOtherSections(false);
       window.removeEventListener('resize', this.handleResize);
-      this.$refs['pricing'].style.height = "auto";
     },
-
+    hideOtherSections(hide) {
+      const sections = document.getElementsByClassName('section-to-hide');
+      for (let i = 0; i < sections.length; i++) {
+        sections[i].style.display = hide ? 'none' : '';
+      }
+    },
     preventScroll(e) {
       e.preventDefault();
     },
 
     adjustPopupHeight() {
       if (window.innerWidth < 1000) {
-        document.body.addEventListener('wheel', this.preventScroll, { passive: false });
-        this.$refs['scr'].style.overflow = "scroll";
-        this.$refs['pricing'].style.height = window.innerHeight + 'px';
-        this.scrollToSection('pricing');
-      }else if (window.innerWidth > 1000 && window.innerWidth < 1700) {
-        document.body.addEventListener('touchmove', this.preventScroll, { passive: false });
-        /*  this.$refs['pricing'].style.height = window.innerHeight + 'px'; */
         this.scrollToSection('pricing');
       } else if (window.innerWidth > 1000 && window.innerWidth < 1700) {
-        document.body.addEventListener('touchmove', this.preventScroll, { passive: false });
-        /*  this.$refs['pricing'].style.height = window.innerHeight + 'px'; */
+        this.scrollToSection('pricing');
+      } else if (window.innerWidth > 1000 && window.innerWidth < 1700) {
         this.scrollToSection('pricing');
       } else {
-        document.body.removeEventListener('wheel', this.preventScroll, { passive: false });
         this.scrollToSection('pricing-body');
       }
     },

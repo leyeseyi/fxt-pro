@@ -5,35 +5,35 @@
 
       <transition name="scale-fade" mode="out-in" >
         <div v-if="showContent">
-          <div id="nav" class="section" ref="nav">
+          <div id="nav" class="section section-to-hide" ref="nav">
             <navigation />
           </div>
           
-          <div id="home" class="section" ref="home">
+          <div id="home" class="section section-to-hide" ref="home">
             <home-view/>
           </div>
           
 
-          <div id="about" class="section" ref="about">
+          <div id="about" class="section section-to-hide" ref="about">
             <about/>
           </div>
           <div id="membership" class="section" ref="membership">
             <pricing/>
           </div>
-          <div id="fxt-store" class="section" ref="fxt-store">
+          <div id="fxt-store" class="section section-to-hide" ref="fxt-store">
             <fxt-store/>
           </div>
-          <div id="blog" class="section" ref="blog">
+          <div id="blog" class="section section-to-hide" ref="blog">
             <blog/>
           </div>
-          <div id="partnership" class="section" ref="partnership">
+          <div id="partnership" class="section section-to-hide" ref="partnership">
             <partnership/>
           </div>
-          <div id="faq" class="section" ref="faq">
+          <div id="faq" class="section section-to-hide" ref="faq">
             <faq/>
           </div>
 
-          <foot-note/>
+          <foot-note class="section-to-hide"/>
         </div>
       </transition>
     </div>
