@@ -47,11 +47,11 @@
   }
 
   @screen lg {
-    @apply px-32 h-screen;
+    @apply px-32 ;
   }
 
   @screen xl {
-    @apply px-52
+    @apply px-52 h-screen
   }
 
   h2 {

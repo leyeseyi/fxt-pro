@@ -275,9 +275,14 @@ export default {
     },
     hideOtherSections(hide) {
       const sections = document.getElementsByClassName('section-to-hide');
+      const sections1 = document.getElementsByClassName('section-to-hide1');
       if (window.innerWidth < 1700) {
         for (let i = 0; i < sections.length; i++) {
           sections[i].style.display = hide ? 'none' : '';
+        }
+      } else {
+        for (let i = 0; i < sections1.length; i++) {
+          sections1[i].style.display = hide ? 'none' : '';
         }
       }
 
@@ -437,17 +442,22 @@ export default {
               rgba(255, 255, 255, 0.8),
               rgba(255, 255, 255, 0) 70%);
           top: 0;
-          left: -50px;
-          opacity: 0.6;
+          left: 0px;
+          opacity: 0;
         }
 
         @keyframes shine {
           0% {
-            left: -50px;
+            left: 0px;
+          }
+
+          10% {
+            opacity: 0.6
           }
 
           60% {
             left: 100%;
+            opacity: 0.6;
           }
 
           to {
