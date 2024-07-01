@@ -467,7 +467,7 @@ export default {
 
 
         .plan {
-          @apply p-8 flex flex-col items-center justify-start gap-5 rounded-3xl bg-[#191919] text-white min-w-[350px] max-w-[400px] relative;
+          @apply p-8 flex flex-col items-center justify-start gap-5 rounded-3xl bg-[#191919] text-white min-w-[280px] max-w-[400px] relative;
           box-shadow: 8px 9px 25px 2px rgba(0, 0, 0, 0.15);
 
           @screen md {
