@@ -6,7 +6,7 @@
       made it possible for both Non-Trader and Traders to be part of this great community, Now you can earn from us!
     </p>
     <p>Join our Partnership program and earn after a successful referral to our paid Products (Basic membership/ Premium membership/ Elite membership). 
-      All earnings would be processed on <a href='https://Whop.com/' target='_blank'>WHOP</a>
+      All earnings will be processed on <a href='https://Whop.com/' target='_blank'>WHOP</a>
       and can be withdrawn to your Local banks.
     </p>
     <p>Its essential for you to have an account on <a href='https://Whop.com/' target='_blank'>WHOP</a> in other to

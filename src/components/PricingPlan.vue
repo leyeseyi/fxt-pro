@@ -156,7 +156,7 @@ export default {
           showPlanPop: false,
           payOn: [
             {
-              name: "DOLLAR CARD/CRYPTO",
+              name: "DOLLAR CARD",
               img: whop,
               link: "https://whop.com/checkout/plan_zd2m8IWnAKVae?d2c=true"
             }
