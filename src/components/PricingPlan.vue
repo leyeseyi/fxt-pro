@@ -274,18 +274,50 @@ export default {
       window.removeEventListener('resize', this.handleResize);
     },
     hideOtherSections(hide) {
+      const navLinks = document.querySelectorAll('.link');
       const sections = document.getElementsByClassName('section-to-hide');
       const sections1 = document.getElementsByClassName('section-to-hide1');
       if (window.innerWidth < 1700) {
         for (let i = 0; i < sections.length; i++) {
           sections[i].style.display = hide ? 'none' : '';
+          navLinks.forEach(navLink => {
+            const href = navLink.getAttribute('href');
+            if (href) {
+              const sectionId = href.substring(1);
+              const section = document.getElementById(sectionId);
+              if (section && this.isElementInViewport(section)) {
+                navLink.classList.add('active');
+              } else {
+                navLink.classList.remove('active');
+              }
+            }
+          });
         }
       } else {
         for (let i = 0; i < sections1.length; i++) {
           sections1[i].style.display = hide ? 'none' : '';
+          navLinks.forEach(navLink => {
+            const href = navLink.getAttribute('href');
+            if (href) {
+              const sectionId = href.substring(1);
+              const section = document.getElementById(sectionId);
+              if (section && this.isElementInViewport(section)) {
+                navLink.classList.add('active');
+              } else {
+                navLink.classList.remove('active');
+              }
+            }
+          });
         }
       }
 
+    },
+    isElementInViewport(el) {
+      const rect = el.getBoundingClientRect();
+      return (
+        rect.top >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+      );
     },
     preventScroll(e) {
       e.preventDefault();

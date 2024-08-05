@@ -51,6 +51,9 @@
   }
 
   @screen xl {
+    @apply px-52
+  }
+  @screen xll {
     @apply px-52 h-screen
   }
 
